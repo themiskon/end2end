@@ -6,7 +6,7 @@
 %fishing (coming soon)
 
 %add path to feisty folder, 
-addpath('/zhome/2a/3/160177/MATLAB/Projects/FEISTY/Simple_run')
+addpath('/Simple_run')
 
 %choose parameters:
 mAdult=[0.2,1,3.5,14,60,250,1000]; %set number of zooplankton groups and max sizes
