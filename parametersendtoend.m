@@ -19,7 +19,7 @@ onceagain struct =[]
 end
 
 %add path to FEISTY folder
-addpath('/zhome/2a/3/160177/MATLAB/Projects/FEISTY/Simple_run')
+addpath('/Simple_run')
 p = setupGeneric(mAdult);
 p = parametersChemostat(p);
 p.L = L; %Light
