@@ -7,6 +7,7 @@ Although the knowledge on natural sciences and the computational power is increa
 !! coming soon: onceagain presaved structures for fast converged model results
 
 Instructions:
+The project should be placed in NUM model MATLAB folder, otherwise, add paths in endtoend and parametersendtoend files.
 end2end.m : file that runs the simulation.
 simulateendtoend : contains the loop simulation
 parametersendtoend: sets up the parameters needed for the model
