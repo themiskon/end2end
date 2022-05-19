@@ -2,8 +2,9 @@
 Technical University of Denmark - National Institute of Aquatic Resources                    DTU Aqua
 This code is part of the special course: End to end ecosystem modelling, supervised by Ken H Andersen.
 
-
 Although the knowledge on natural sciences and the computational power is increasing, earth is too complex to be simulated by a modern computer. Contemporary solutions involve models limited in space or details. Spatially limited models can provide high resolution in specific ecosystems, whereas generic models describe global trends. In this work the first principles NUM and the fisheries model FEISTY were linked. 
+
+!! coming soon: onceagain presaved structures for fast converged model results
 
 Instructions:
 end2end.m : file that runs the simulation.
@@ -15,6 +16,7 @@ getlast: similar to the previous one. Returns a matrix with the biomass in the l
 plotcustomHTL: function that is used to test custom HTL mortalities on NUM model
 testHTLmort: works with plotcustomHTL
 packresults: merges the outputs for compatibility reasons (plotting with existing functions)
+folder simple_run: contains the modified FEISTY model
 
 Coming soon:
 onceagaincode: a loop specified to run multiple years for a converged model
