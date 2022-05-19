@@ -9,7 +9,7 @@
 addpath('/Simple_run')
 
 %choose parameters:
-mAdult=[0.2,1,3.5,14,60,250,1000]; %set number of zooplankton groups and max sizes
+mAdult=[0.2,2,20,200,1000,1250]; %set number of zooplankton groups and max sizes
 L=100; %set light conditions
 pudeep=50; %set deep nutrients
 d=0.1; %set mixing rate
