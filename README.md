@@ -2,9 +2,9 @@
 Technical University of Denmark - National Institute of Aquatic Resources                    DTU Aqua
 This code is part of the special course: End to end ecosystem modelling, supervised by Ken H Andersen.
 
-Although the knowledge on natural sciences and the computational power is increasing, earth is too complex to be simulated by a modern computer. Contemporary solutions involve models limited in space or details. Spatially limited models can provide high resolution in specific ecosystems, whereas generic models describe global trends. In this work the first principles NUM and the fisheries model FEISTY were linked. 
+Although the knowledge of natural sciences and the computational power is increasing, earth is too complex to be simulated by a modern computer. Contemporary solutions involve models limited in space or details. Spatially limited models can provide high resolution in specific ecosystems, whereas generic models describe global trends. In this work the first principles NUM and the fisheries model FEISTY were linked. 
 
-!! coming soon: onceagain presaved structures for fast converged model results
+!! coming soon: onceagain presaved structures for fast converged model results !!
 
 Instructions:
 The project should be placed in NUM model MATLAB folder, otherwise, add paths in endtoend and parametersendtoend files.
