@@ -14,7 +14,7 @@ L=100; %set light conditions
 pudeep=50; %set deep nutrients
 d=0.1; %set mixing rate
  %in case there is a previous simulation
-if exist('onceagain')
+if isstruct(onceagain)
 else
 onceagain=[];
 end
@@ -23,15 +23,14 @@ end
 %% warmup - here we can have the NUM model converged before the loop simulation begins
 p.tEnd=1000; %days
 %Run the NUM chemostat model, returns a structure named warmup
-if exist('onceagain')==0
+if ~isstruct(onceagain)
     disp('warmup')
     warmup=simulateChemostat(p, p.L);
 else
     warmup=[];
 end
 
-%% Setup and run the linked model
-%setup Feisty parameters
+%% Run the linked model
 p.InitEnd=5000; %____________________________________%%%%% Days
 p.tEnd=1;
 [sim,result,zoomort]=simulateendtoend(p,param,p.InitEnd,warmup);
@@ -43,6 +42,7 @@ r=packresults(result);
 toc
 disp('plotting')
 p.tEnd=p.InitEnd;
+s.p.tEnd=p.InitEnd;
 plotSimulation(s)
 plotPoemf(param, r)
 plotdiet(param,r)
