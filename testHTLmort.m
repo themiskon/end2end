@@ -8,8 +8,8 @@ function sim = testHTLmort(mortHTL,mAdult,options,mortm)
 % _______________________default: 1 group with maximum size of 20μgC
 % mortHTL: HTL mortality per day - default: 0.1
 % options: under development, specifies the shape of the HTLmort curve
-% 1: constant mortality for all size classes | 2: quadratic mortality
-% 3: coming soon          | default : 1
+% 1: constant mortality for all size classes | 2: sigmoid
+% 3: coming soon (quadratic)         | default : 1
 % mortm: mass (μg C) where mortality = 1/2 mortHTL
 
 %Output
