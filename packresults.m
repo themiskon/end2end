@@ -1,70 +1,69 @@
-function s = packresults(st, per)
+function s = packresults(str, per)
 %merges multiple structures into one, up to 3 levels
-%input
+%input:
 % str : structure that containts structures
-% per : percentage of the data kept
+% per : percentage of the data kept 
+%initial step
 arguments
- st struct = []
+ str struct = []
  per double = 100
 end
 
-%initial step
-daycount=(fieldnames(st));
+daycount=(fieldnames(str));
 Init=length(daycount);
-keep=floor(Init*(per/100));
-
-%%loop that removes fields
-for ever =1:Init-keep
-st=rmfield(st,(daycount{ever}));
+keep=length(daycount)-floor(length(daycount)*(1-per/100));
+if Init-keep > 0
+    ciao=daycount(1:Init-keep);
+    str=rmfield(str,ciao);
 end
 
-s=st.(daycount{Init-keep+1});
-fns=fieldnames(st.(daycount{Init-keep+1}));
+s=str.(daycount{Init-keep+1});
+fns=fieldnames(str.(daycount{Init-keep+1}));
 
-%extract structured data
+%extract structured results
 for ii = Init-keep+2:Init
     for i= 1: length(fns)
-        if isstruct(st.(daycount{ii}).(fns{i}))
-            newlevel=fieldnames(st.(daycount{ii}).(fns{i}));
+        if isstruct(str.(daycount{ii}).(fns{i}))
+            newlevel=fieldnames(str.(daycount{ii}).(fns{i}));
             for j=1:length(newlevel)
-                if isstruct(st.(daycount{ii}).(fns{i}).(newlevel{j}))
-                    nlevel=fieldnames(st.(daycount{ii}).(fns{i}).(newlevel{j}));
+                if isstruct(str.(daycount{ii}).(fns{i}).(newlevel{j}))
+                    nlevel=fieldnames(str.(daycount{ii}).(fns{i}).(newlevel{j}));
                     for k=1:length(nlevel)
-                        s.(fns{i}).(newlevel{j}).(nlevel{k})=[s.(fns{i}).(newlevel{j}).(nlevel{k}); st.(daycount{ii}).(fns{i}).(newlevel{j}).(nlevel{k})];
+                        s.(fns{i}).(newlevel{j}).(nlevel{k})=[s.(fns{i}).(newlevel{j}).(nlevel{k}); str.(daycount{ii}).(fns{i}).(newlevel{j}).(nlevel{k})];
                     end
                 else
-                    s.(fns{i}).(newlevel{j})=[s.(fns{i}).(newlevel{j}); st.(daycount{ii}).(fns{i}).(newlevel{j})];
+                    s.(fns{i}).(newlevel{j})=[s.(fns{i}).(newlevel{j}); str.(daycount{ii}).(fns{i}).(newlevel{j})];
                 end
             end
         else
-            s.(fns{i})=[s.(fns{i}); st.(daycount{ii}).(fns{i})];
+            s.(fns{i})=[s.(fns{i}); str.(daycount{ii}).(fns{i})];
         end
     end
 end
 
-%replace duplicate fields %%
+%replace duplicate fields
 
 if isfield(s,'t')
     clear s.t
-    s.t=st.(daycount{Init-keep+1}).t;
+    s.t=str.(daycount{Init-keep+1}).t;
     for i= Init-keep+2:Init
-        s.t=[s.t; (s.t(end)+st.(daycount{i}).t)];
+        s.t=[s.t; (s.t(end)+str.(daycount{i}).t)];
     end
 end
 
 if isfield(s,'T')
     clear s.T
-    s.T=st.(daycount{Init-keep+1}).T;
+    s.T=str.(daycount{Init-keep+1}).T;
 end
 
 if isfield(s,'L')
     clear s.L
-    s.L=st.(daycount{Init-keep+1}).L;
+    s.L=str.(daycount{Init-keep+1}).L;
 end
 
 if isfield(s,'p')
     clear s.p
-    s.p=st.(daycount{Init-keep+1}).p;
+    s.p=str.(daycount{Init-keep+1}).p;
 end
 
 end
