@@ -35,7 +35,7 @@ else
 end
 
 %% Run the linked model
-p.InitEnd=5000; %____________________________________%%%%% Days
+p.InitEnd=1000; %____________________________________%%%%% Days
 p.tEnd=1;
 [sim,result,zoomort]=simulateendtoend(p,param,p.InitEnd,warmup);
 
