@@ -14,12 +14,7 @@ L=100; %set light conditions
 pudeep=50; %set deep nutrients
 d=0.1; %set mixing rate
  %in case there is a previous simulation
-if exist('onceagain')
-    if isstruct(onceagain)
-    else
-       onceagain=[]; 
-    end
-else
+if ~exist('onceagain','var') || ~isstruct(onceagain)
 onceagain=[];
 end
 
