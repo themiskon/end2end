@@ -3,16 +3,17 @@
 %mass balance
 %HTL mortality transfer to NUM
 %Allocation to growth changed in FEISTY
-%fishing (coming soon)
+%fishing 
 
 %add path to feisty folder, 
-addpath('/Simple_run')
+addpath('/zhome/2a/3/160177/MATLAB/Projects/FEISTY/Simple_run')
 
 %choose parameters:
-mAdult=[0.2,2,20,200,1000,1250]; %set number of zooplankton groups and max sizes
+%[20 200 500 1000];%
+mAdult=[0.2,2,20,200,1000,1250]; %logspace(log10(0.2),log10(1000),10); %set number of zooplankton groups and max sizes
 L=100; %set light conditions
 pudeep=50; %set deep nutrients
-d=0.1; %set mixing rate
+d=0.11; %set mixing rate
  %in case there is a previous simulation
 if ~exist('onceagain','var') || ~isstruct(onceagain)
 onceagain=[];
@@ -29,7 +30,8 @@ else
     warmup=[];
 end
 
-%% Run the linked model
+%% Setup and run the linked model
+%setup Feisty parameters
 p.InitEnd=1000; %____________________________________%%%%% Days
 p.tEnd=1;
 [sim,result,zoomort]=simulateendtoend(p,param,p.InitEnd,warmup);
@@ -39,15 +41,15 @@ tic
 s=packresults(sim);
 r=packresults(result);
 toc
-disp('plotting')
-p.tEnd=p.InitEnd;
-s.p.tEnd=p.InitEnd;
-plotSimulation(s)
-plotPoemf(param, r)
-plotdiet(param,r)
+% disp('plotting')
+% p.tEnd=p.InitEnd;
+% s.p.tEnd=p.InitEnd;
+%plotSimulation(s)
+% plotPoemf(param, r)
+% plotdiet(param,r)
 %setup and loop once again, repeat as long as needed for steady state
 onceagain.onceagainnum=s.u(end,:);
 onceagain.onceagainfeisty=r.y(end,:);
-save 7zoo100L01d.mat onceagain
+%save 4zoo30L002d.mat onceagain
 clear sim result r s
 endtoend
