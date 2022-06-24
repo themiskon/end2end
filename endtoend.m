@@ -6,7 +6,7 @@
 %fishing 
 
 %add path to feisty folder, 
-addpath('/zhome/2a/3/160177/MATLAB/Projects/FEISTY/Simple_run')
+addpath('/Simple_run')
 
 %choose parameters:
 %[20 200 500 1000];%
