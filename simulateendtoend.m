@@ -10,7 +10,7 @@ for day=1:Endtime
         p.u0= sim.(sprintf('day%d',day-1)).u(end,:);
     else
         if isfield(p, 'onceagainnum')
-            p.u0=p.onceagainnum;  
+            p.u0=p.onceagainnum;   
             calcmort(p.onceagainnum, param.onceagainfeisty, param);
         else
             p.u0=warmup.u(end,:);

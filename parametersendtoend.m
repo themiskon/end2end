@@ -19,7 +19,7 @@ onceagain struct =[]
 end
 
 %add path to FEISTY folder
-addpath('/Simple_run')
+addpath('/zhome/2a/3/160177/MATLAB/Projects/FEISTY/Simple_run')
 p = setupGeneric(mAdult);
 p = parametersChemostat(p);
 p.L = L; %Light
@@ -47,6 +47,15 @@ param.lTm=1000; %liters to cubic meters
 param.dTw=10; %dry to wet C weight
 param.NtF=param.muTg*param.lTm*param.dTw*param.proddepth;
 
+%trawl-like selectivity curve
+param.u=2;
+param.Fmax(1:5)=0;
+param.Fsmall=sqrt((1+(param.wu(param.ix1(1):param.ix2(1))./param.smat).^(-param.u)).^(-1).*(1+(param.w(param.ix1(1):param.ix2(1))./param.smat).^(-param.u)).^(-1));
+param.Flarge=sqrt((1+(param.wu(param.ix1(3):param.ix2(3))./param.smat).^(-param.u)).^(-1).*(1+(param.w(param.ix1(3):param.ix2(3))./param.lmat).^(-param.u)).^(-1));
+param.F=[param.Fmax(1).*param.Fsmall'; param.Fmax(2).*param.Fsmall'; param.Fmax(3).*param.Flarge'; param.Fmax(4).*param.Flarge'; param.Fmax(5).*param.Flarge'];
+
+
 end
+
 
 
