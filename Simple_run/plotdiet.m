@@ -100,5 +100,5 @@ xlabel('size-classes')
 % plot legend
 z=param.ixZoo(end)-3;
 ix=param.ix1;
-nspecies=[1 param.ixBent(1) ix(1) ix(2) ix(3) ix(4) ix(5)];
+nspecies=[1 length(param.ixZoo)+1 length(param.ixZoo)+3 ix(2) ix(3) ix(4) ix(5)];
 legend(H(nspecies),{'Zoopl','Benthos','Spel','Mpel','Lpel','Bpel','Ldem'})

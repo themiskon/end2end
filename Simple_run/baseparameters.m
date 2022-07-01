@@ -22,7 +22,7 @@ param.K =  [5  5  5  0];  % g ww/m2
 %
 % stages
 %   
-param.nstage = 12; % number of stages predator use 3, 6, 9, etc (prey = 2/3)
+param.nstage = 6; % number of stages predator use 3, 6, 9, etc (prey = 2/3)
 param.nsize  = param.nstage + 1; % 
 param.sfish = 0.001; % smallest size fish (all fish)
 param.lfish = 125000; % largest size fish (only predator)
@@ -109,9 +109,12 @@ param.mort0 = 0*param.ixFish'+.1;
 % define investment in maturation
 [~,param.matstageS] = min(abs(param.sizes-param.smat));
 [~,param.matstageL] = min(abs(param.sizes-param.lmat));
-param.allogrS=1-((1+(param.wc(param.ix1(1):param.ix2(1))./param.smat).^(-5)).^(-1).*(param.wc(param.ix1(1):param.ix2(1))./param.lmat).^(1-param.n));
-param.allogrL=1-((1+(param.wc(param.ix1(3):param.ix2(3))./param.lmat).^(-5)).^(-1).*(param.wc(param.ix1(3):param.ix2(3))./param.lfish).^(1-param.n));
-param.kappa = [param.allogrS param.allogrS param.allogrL param.allogrL param.allogrL];
+param.kappaS = [ones(param.matstageS-1,1)' repmat(0.5,(param.maxsmall-1-(param.matstageS-1)),1)'];
+param.kappaL = [ones(param.matstageL-1,1)' repmat(0.5,(param.nsize-1-(param.matstageL-1)),1)'];
+param.kappa = [param.kappaS param.kappaS param.kappaL param.kappaL param.kappaL];
+% param.allogrS=1-((1+(param.wc(param.ix1(1):param.ix2(1))./param.smat).^(-5)).^(-1).*(param.wc(param.ix1(1):param.ix2(1))./param.lmat).^(1-param.n));
+% param.allogrL=1-((1+(param.wc(param.ix1(3):param.ix2(3))./param.lmat).^(-5)).^(-1).*(param.wc(param.ix1(3):param.ix2(3))./param.lfish).^(1-param.n));
+% param.kappa = [param.allogrS param.allogrS param.allogrL param.allogrL param.allogrL];
 
 param.z = (param.w./param.wu)';
 param.Cmax = (param.h*param.wc.^param.n)./param.wc .* param.scTemp;
