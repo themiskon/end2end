@@ -109,12 +109,12 @@ param.mort0 = 0*param.ixFish'+.1;
 % define investment in maturation
 [~,param.matstageS] = min(abs(param.sizes-param.smat));
 [~,param.matstageL] = min(abs(param.sizes-param.lmat));
-param.kappaS = [ones(param.matstageS-1,1)' repmat(0.5,(param.maxsmall-1-(param.matstageS-1)),1)'];
-param.kappaL = [ones(param.matstageL-1,1)' repmat(0.5,(param.nsize-1-(param.matstageL-1)),1)'];
-param.kappa = [param.kappaS param.kappaS param.kappaL param.kappaL param.kappaL];
-% param.allogrS=1-((1+(param.wc(param.ix1(1):param.ix2(1))./param.smat).^(-5)).^(-1).*(param.wc(param.ix1(1):param.ix2(1))./param.lmat).^(1-param.n));
-% param.allogrL=1-((1+(param.wc(param.ix1(3):param.ix2(3))./param.lmat).^(-5)).^(-1).*(param.wc(param.ix1(3):param.ix2(3))./param.lfish).^(1-param.n));
-% param.kappa = [param.allogrS param.allogrS param.allogrL param.allogrL param.allogrL];
+% param.kappaS = [ones(param.matstageS-1,1)' repmat(0.5,(param.maxsmall-1-(param.matstageS-1)),1)'];
+% param.kappaL = [ones(param.matstageL-1,1)' repmat(0.5,(param.nsize-1-(param.matstageL-1)),1)'];
+% param.kappa = [param.kappaS param.kappaS param.kappaL param.kappaL param.kappaL];
+param.allogrS=1-((1+(param.wc(param.ix1(1):param.ix2(1))./param.smat).^(-5)).^(-1).*(param.wc(param.ix1(1):param.ix2(1))./param.lmat).^(1-param.n));
+param.allogrL=1-((1+(param.wc(param.ix1(3):param.ix2(3))./param.lmat).^(-5)).^(-1).*(param.wc(param.ix1(3):param.ix2(3))./param.lfish).^(1-param.n));
+param.kappa = [param.allogrS param.allogrS param.allogrL param.allogrL param.allogrL];
 
 param.z = (param.w./param.wu)';
 param.Cmax = (param.h*param.wc.^param.n)./param.wc .* param.scTemp;
