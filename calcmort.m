@@ -3,11 +3,11 @@ function zoomort = calcmort(sim ,result, param)
 % beta=500;
 % sigma=1.5;
 if isstruct(sim)
-    y=[(sim.u( end, sim.p.ixStart(2):sim.p.ixEnd(end)).*param.NtF)';...
+    y=[(sim.u( end, sim.p.ixStart(2):sim.p.ixEnd(end)).*param.proddepth./100)';...
     result.R(end,param.ixBent)';...
    result.B(end,:)'];
 else
-    y=[sim(13:end)'.*param.NtF;...
+    y=[sim(13:end)'.*param.proddepth./100;...
        result(param.ixBent)';...
        result(param.ixFish)'];
 end
@@ -17,10 +17,10 @@ zoomort=mortpred(param.ixZoo);
 phyto=zeros(1,10);
 %combine mortality values for all NUM spectrum
 mortHTL=[phyto,mortpred(param.ixZoo)./365.25]; %transform rate from per year to per day
-dummy=mortHTL(param.p.ixStart(2)-param.p.idxB+1:end);
-dummy(dummy<0.005)=0.005;
-mortHTL(param.p.ixStart(2)-param.p.idxB+1:end)=dummy;
-%disable quadratic and/or declining HTL mort
+% dummy=mortHTL(param.p.ixStart(2)-param.p.idxB+1:end);
+% dummy(dummy<0.005)=0.005;
+% mortHTL(param.p.ixStart(2)-param.p.idxB+1:end)=dummy;
+%disable quadratic
 setHTL(0,0,false,false);
 %call new mortality
 calllib(loadNUMmodelLibrary(), 'f_setmorthtl', ...
